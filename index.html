@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Продажа авиабилетов онлайн - выгодные цены, удобный поиск">
+    <meta name="keywords" content="авиабилеты, купить билет, дешевые авиабилеты, онлайн бронирование">
+    <title>SkyWings - Продажа авиабилетов онлайн</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">✈️ SkyWings</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О компании</a></li>
+                <li><a href="history.html">История заказов</a></li>
+                <li><a href="infrastructure.html">Инфраструктура</a></li>
+                <li><a href="culture.html">Культура полетов</a></li>
+                <li><a href="contact.html">Контакты</a></li>
+            </ul>
+            <div class="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Откройте мир с SkyWings</h1>
+            <p>Лучшие предложения на авиабилеты по всему миру</p>
+        </div>
+    </section>
+
+    <section class="search-section">
+        <div class="search-form">
+            <h2>Поиск авиабилетов</h2>
+            <form id="searchForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="from">Откуда</label>
+                        <input type="text" id="from" name="from" placeholder="Город отправления" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="to">Куда</label>
+                        <input type="text" id="to" name="to" placeholder="Город назначения" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="departure">Дата вылета</label>
+                        <input type="date" id="departure" name="departure" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="return">Дата возврата</label>
+                        <input type="date" id="return" name="return">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="passengers">Пассажиры</label>
+                        <select id="passengers" name="passengers">
+                            <option value="1">1 пассажир</option>
+                            <option value="2">2 пассажира</option>
+                            <option value="3">3 пассажира</option>
+                            <option value="4">4+ пассажира</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="class">Класс</label>
+                        <select id="class" name="class">
+                            <option value="economy">Эконом</option>
+                            <option value="business">Бизнес</option>
+                            <option value="first">Первый класс</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Найти билеты</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Лучшие цены</h3>
+                <p>Гарантируем самые выгодные предложения на рынке авиабилетов</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Безопасность</h3>
+                <p>Защищенные платежи и конфиденциальность данных</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Быстрое бронирование</h3>
+                <p>Забронируйте билет за несколько минут</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Поддержка 24/7</h3>
+                <p>Круглосуточная помощь нашим клиентам</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="destinations">
+        <div class="container">
+            <h2>Популярные направления</h2>
+            <div class="destination-grid">
+                <div class="destination-card">
+                    <div class="destination-img">🗼</div>
+                    <div class="destination-info">
+                        <h3>Париж</h3>
+                        <p>Франция</p>
+                        <p class="price">от 15 000 ₽</p>
+                        <button class="btn-small">Подробнее</button>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <div class="destination-img">🗽</div>
+                    <div class="destination-info">
+                        <h3>Нью-Йорк</h3>
+                        <p>США</p>
+                        <p class="price">от 35 000 ₽</p>
+                        <button class="btn-small">Подробнее</button>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <div class="destination-img">🏯</div>
+                    <div class="destination-info">
+                        <h3>Токио</h3>
+                        <p>Япония</p>
+                        <p class="price">от 40 000 ₽</p>
+                        <button class="btn-small">Подробнее</button>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <div class="destination-img">🕌</div>
+                    <div class="destination-info">
+                        <h3>Дубай</h3>
+                        <p>ОАЭ</p>
+                        <p class="price">от 25 000 ₽</p>
+                        <button class="btn-small">Подробнее</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>О компании</h3>
+                <ul>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="#">Вакансии</a></li>
+                    <li><a href="#">Новости</a></li>
+                    <li><a href="#">Партнеры</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Помощь</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Правила</a></li>
+                    <li><a href="#">Возврат билетов</a></li>
+                    <li><a href="contact.html">Поддержка</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <ul>
+                    <li>📞 +7 (800) 555-35-35</li>
+                    <li>📧 info@skywings.ru</li>
+                    <li>📍 Москва, ул. Авиаторов, 1</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Социальные сети</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">VK</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SkyWings. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

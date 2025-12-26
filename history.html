@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="История ваших заказов и бронирований">
+    <title>История заказов - SkyWings</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .history-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .login-prompt {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .order-list {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .order-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #667eea;
+        }
+
+            .order-card:hover {
+                transform: translateX(10px);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .order-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .order-status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .status-confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .flight-route {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .route-arrow {
+            color: #667eea;
+            font-size: 1.5rem;
+        }
+
+        .order-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: #333;
+            margin-top: 0.2rem;
+        }
+
+        .order-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-view,
+        .btn-download {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view {
+            background: #667eea;
+            color: white;
+        }
+
+            .btn-view:hover {
+                background: #5568d3;
+                transform: translateY(-2px);
+            }
+
+        .btn-download {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+            .btn-download:hover {
+                background: #667eea;
+                color: white;
+                transform: translateY(-2px);
+            }
+
+        .filter-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .empty-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">✈️ SkyWings</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О компании</a></li>
+                <li><a href="history.html">История заказов</a></li>
+                <li><a href="infrastructure.html">Инфраструктура</a></li>
+                <li><a href="culture.html">Культура полетов</a></li>
+                <li><a href="contact.html">Контакты</a></li>
+            </ul>
+            <div class="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1>История заказов</h1>
+            <p>Все ваши бронирования в одном месте</p>
+        </div>
+    </section>
+
+    <div class="history-container">
+        <div class="filter-section">
+            <h3>Фильтры</h3>
+            <div class="filter-grid">
+                <div class="form-group">
+                    <label for="filterStatus">Статус</label>
+                    <select id="filterStatus">
+                        <option value="all">Все заказы</option>
+                        <option value="confirmed">Подтверждено</option>
+                        <option value="pending">Ожидание</option>
+                        <option value="cancelled">Отменено</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="filterDate">Период</label>
+                    <select id="filterDate">
+                        <option value="all">Все время</option>
+                        <option value="month">Последний месяц</option>
+                        <option value="year">Последний год</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div id="ordersList" class="order-list">
+            <!-- Заказ 1 -->
+            <div class="order-card" data-status="confirmed">
+                <div class="order-header">
+                    <span class="order-number">Заказ #12345</span>
+                    <span class="order-status status-confirmed">Подтверждено</span>
+                </div>
+                <div class="flight-route">
+                    <span><strong>Москва (SVO)</strong></span>
+                    <span class="route-arrow">✈️</span>
+                    <span><strong>Париж (CDG)</strong></span>
+                </div>
+                <div class="order-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Дата вылета</span>
+                        <span class="detail-value">15 января 2025</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Пассажиры</span>
+                        <span class="detail-value">2 взрослых</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Класс</span>
+                        <span class="detail-value">Эконом</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Стоимость</span>
+                        <span class="detail-value">30 000 ₽</span>
+                    </div>
+                </div>
+                <div class="order-actions">
+                    <button class="btn-view">Подробнее</button>
+                    <button class="btn-download">Скачать билет</button>
+                </div>
+            </div>
+
+            <!-- Заказ 2 -->
+            <div class="order-card" data-status="pending">
+                <div class="order-header">
+                    <span class="order-number">Заказ #12344</span>
+                    <span class="order-status status-pending">Ожидание оплаты</span>
+                </div>
+                <div class="flight-route">
+                    <span><strong>Санкт-Петербург (LED)</strong></span>
+                    <span class="route-arrow">✈️</span>
+                    <span><strong>Токио (NRT)</strong></span>
+                </div>
+                <div class="order-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Дата вылета</span>
+                        <span class="detail-value">28 января 2025</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Пассажиры</span>
+                        <span class="detail-value">1 взрослый</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Класс</span>
+                        <span class="detail-value">Бизнес</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Стоимость</span>
+                        <span class="detail-value">85 000 ₽</span>
+                    </div>
+                </div>
+                <div class="order-actions">
+                    <button class="btn-view">Завершить оплату</button>
+                    <button class="btn-download">Отменить</button>
+                </div>
+            </div>
+
+            <!-- Заказ 3 -->
+            <div class="order-card" data-status="confirmed">
+                <div class="order-header">
+                    <span class="order-number">Заказ #12343</span>
+                    <span class="order-status status-confirmed">Подтверждено</span>
+                </div>
+                <div class="flight-route">
+                    <span><strong>Москва (DME)</strong></span>
+                    <span class="route-arrow">✈️</span>
+                    <span><strong>Дубай (DXB)</strong></span>
+                </div>
+                <div class="order-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Дата вылета</span>
+                        <span class="detail-value">10 декабря 2024</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Пассажиры</span>
+                        <span class="detail-value">3 взрослых, 1 ребенок</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Класс</span>
+                        <span class="detail-value">Эконом</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Стоимость</span>
+                        <span class="detail-value">120 000 ₽</span>
+                    </div>
+                </div>
+                <div class="order-actions">
+                    <button class="btn-view">Подробнее</button>
+                    <button class="btn-download">Скачать билет</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>О компании</h3>
+                <ul>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="#">Вакансии</a></li>
+                    <li><a href="#">Новости</a></li>
+                    <li><a href="#">Партнеры</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Помощь</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Правила</a></li>
+                    <li><a href="#">Возврат билетов</a></li>
+                    <li><a href="contact.html">Поддержка</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <ul>
+                    <li>📞 +7 (800) 555-35-35</li>
+                    <li>📧 info@skywings.ru</li>
+                    <li>📍 Москва, ул. Авиаторов, 1</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Социальные сети</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">VK</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SkyWings. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Фильтрация заказов
+        const filterStatus = document.getElementById('filterStatus');
+        const orderCards = document.querySelectorAll('.order-card');
+
+        filterStatus.addEventListener('change', function() {
+            const selectedStatus = this.value;
+
+            orderCards.forEach(card => {
+                if (selectedStatus === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    const cardStatus = card.getAttribute('data-status');
+                    card.style.display = cardStatus === selectedStatus ? 'block' : 'none';
+                }
+            });
+        });
+
+        // Обработка кнопок
+        document.querySelectorAll('.btn-view').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const orderCard = this.closest('.order-card');
+                const orderNumber = orderCard.querySelector('.order-number').textContent;
+                alert(`Просмотр деталей: ${orderNumber}`);
+            });
+        });
+
+        document.querySelectorAll('.btn-download').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const orderCard = this.closest('.order-card');
+                const orderNumber = orderCard.querySelector('.order-number').textContent;
+                alert(`Скачивание билета: ${orderNumber}`);
+            });
+        });
+    </script>
+</body>
+</html>

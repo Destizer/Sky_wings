@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Свяжитесь с нами - контакты SkyWings">
+    <title>Контакты - SkyWings</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .contact-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-form-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+            .contact-form-section h2 {
+                margin-bottom: 1.5rem;
+                color: #667eea;
+            }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 0.5rem;
+                color: #555;
+                font-weight: 500;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                width: 100%;
+                padding: 0.8rem;
+                border: 2px solid #ddd;
+                border-radius: 5px;
+                font-size: 1rem;
+                transition: all 0.3s ease;
+                font-family: inherit;
+            }
+
+            .form-group textarea {
+                resize: vertical;
+                min-height: 120px;
+            }
+
+                .form-group input:focus,
+                .form-group textarea:focus,
+                .form-group select:focus {
+                    outline: none;
+                    border-color: #667eea;
+                    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+                }
+
+        .contact-info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+            .info-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            }
+
+        .info-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+            padding: 0.8rem;
+            background: #f9f9f9;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+            .info-item:hover {
+                background: #f0f0f0;
+                transform: translateX(5px);
+            }
+
+        .map-section {
+            margin-top: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            margin-top: 1rem;
+        }
+
+        .office-hours {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .hour-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hour-day {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+            .social-btn:hover {
+                transform: translateY(-5px) rotate(10deg);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            }
+
+        .faq-section {
+            margin-top: 4rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer {
+            color: #666;
+        }
+
+        @media (max-width: 968px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">✈️ SkyWings</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О компании</a></li>
+                <li><a href="history.html">История заказов</a></li>
+                <li><a href="infrastructure.html">Инфраструктура</a></li>
+                <li><a href="culture.html">Культура полетов</a></li>
+                <li><a href="contact.html">Контакты</a></li>
+            </ul>
+            <div class="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1>Свяжитесь с нами</h1>
+            <p>Мы всегда рады помочь вам</p>
+        </div>
+    </section>
+
+    <div class="contact-content">
+        <div class="contact-grid">
+            <div class="contact-form-section">
+                <h2>Отправить сообщение</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Ваше имя *</label>
+                        <input type="text" id="name" name="name" required placeholder="Иван Иванов">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="ivan@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Телефон</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Тема обращения *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Выберите тему</option>
+                            <option value="booking">Бронирование билетов</option>
+                            <option value="refund">Возврат билетов</option>
+                            <option value="baggage">Вопросы по багажу</option>
+                            <option value="technical">Технические проблемы</option>
+                            <option value="partnership">Сотрудничество</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Сообщение *</label>
+                        <textarea id="message" name="message" required placeholder="Опишите ваш вопрос или проблему"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn">Отправить сообщение</button>
+                </form>
+            </div>
+
+            <div class="contact-info-section">
+                <div class="info-card">
+                    <div class="info-icon">📞</div>
+                    <h3>Телефон</h3>
+                    <div class="info-item">
+                        <span>Горячая линия:</span>
+                        <strong>+7 (800) 555-35-35</strong>
+                    </div>
+                    <div class="info-item">
+                        <span>Мобильный:</span>
+                        <strong>+7 (495) 123-45-67</strong>
+                    </div>
+                    <p style="color: #666; margin-top: 1rem; font-size: 0.9rem;">Звонок по России бесплатный</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">📧</div>
+                    <h3>Email</h3>
+                    <div class="info-item">
+                        <span>Общие вопросы:</span>
+                        <strong>info@skywings.ru</strong>
+                    </div>
+                    <div class="info-item">
+                        <span>Поддержка:</span>
+                        <strong>support@skywings.ru</strong>
+                    </div>
+                    <div class="info-item">
+                        <span>Партнерство:</span>
+                        <strong>partners@skywings.ru</strong>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">📍</div>
+                    <h3>Адрес офиса</h3>
+                    <div class="info-item">
+                        <span>Россия, г. Москва</span>
+                    </div>
+                    <div class="info-item">
+                        <span>ул. Авиаторов, д. 1</span>
+                    </div>
+                    <div class="info-item">
+                        <span>Индекс: 123456</span>
+                    </div>
+                    <p style="color: #666; margin-top: 1rem; font-size: 0.9rem;">
+                        Ближайшее метро: Авиамоторная<br>
+                        5 минут пешком от метро
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="office-hours">
+            <h2>Время работы</h2>
+            <div class="hours-grid">
+                <div class="hour-item">
+                    <div class="hour-day">Понедельник - Пятница</div>
+                    <div>09:00 - 21:00</div>
+                </div>
+                <div class="hour-item">
+                    <div class="hour-day">Суббота - Воскресенье</div>
+                    <div>10:00 - 19:00</div>
+                </div>
+                <div class="hour-item">
+                    <div class="hour-day">Горячая линия</div>
+                    <div>Круглосуточно 24/7</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem; margin-bottom: 1rem;">Мы в социальных сетях</h3>
+            <div class="social-links">
+                <a href="#" class="social-btn" title="Facebook">📘</a>
+                <a href="#" class="social-btn" title="Instagram">📷</a>
+                <a href="#" class="social-btn" title="Twitter">🐦</a>
+                <a href="#" class="social-btn" title="VK">🔵</a>
+                <a href="#" class="social-btn" title="Telegram">✈️</a>
+                <a href="#" class="social-btn" title="WhatsApp">💬</a>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <h2>Как нас найти</h2>
+            <div class="map-placeholder">🗺️</div>
+            <p style="text-align: center; margin-top: 1rem; color: #666;">
+                Наш офис расположен в центре Москвы, недалеко от станции метро Авиамоторная.
+                Удобная транспортная доступность и бесплатная парковка для посетителей.
+            </p>
+        </div>
+
+        <div class="faq-section">
+            <h2 style="text-align: center; margin-bottom: 1rem;">Быстрые ответы на частые вопросы</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">Как быстро вы отвечаете на обращения?</div>
+                    <div class="faq-answer">Мы стараемся ответить на все обращения в течение 2-4 часов в рабочее время. Срочные вопросы можно решить по телефону горячей линии.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Можно ли приехать в офис без записи?</div>
+                    <div class="faq-answer">Да, наш офис открыт для посетителей в рабочее время. Однако для экономии вашего времени рекомендуем предварительно записаться по телефону.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Какие документы нужны для возврата билета?</div>
+                    <div class="faq-answer">Для возврата билета необходим паспорт, билет (электронный или бумажный) и заявление на возврат. Подробности по телефону поддержки.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Есть ли у вас мобильное приложение?</div>
+                    <div class="faq-answer">Да, у нас есть приложения для iOS и Android. Скачайте их в App Store или Google Play для удобного бронирования с мобильного устройства.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>О компании</h3>
+                <ul>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="#">Вакансии</a></li>
+                    <li><a href="#">Новости</a></li>
+                    <li><a href="#">Партнеры</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Помощь</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Правила</a></li>
+                    <li><a href="#">Возврат билетов</a></li>
+                    <li><a href="contact.html">Поддержка</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <ul>
+                    <li>📞 +7 (800) 555-35-35</li>
+                    <li>📧 info@skywings.ru</li>
+                    <li>📍 Москва, ул. Авиаторов, 1</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Социальные сети</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">VK</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SkyWings. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Обработка формы контактов
+        const contactForm = document.getElementById('contactForm');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            // Валидация email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Пожалуйста, введите корректный email');
+                return;
+            }
+
+            // Проверка обязательных полей
+            if (!name || !email || !subject || !message) {
+                alert('Пожалуйста, заполните все обязательные поля');
+                return;
+            }
+
+            // Имитация отправки
+            alert(`Спасибо за обращение, ${name}!\n\nВаше сообщение получено.\nТема: ${subject}\n\nМы свяжемся с вами в ближайшее время по адресу ${email}`);
+
+            // Очистка формы
+            contactForm.reset();
+        });
+
+        // Маска для телефона
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value[0] === '7' || value[0] === '8') {
+                    value = value.substring(1);
+                }
+                let formatted = '+7';
+                if (value.length > 0) {
+                    formatted += ' (' + value.substring(0, 3);
+                }
+                if (value.length >= 3) {
+                    formatted += ') ' + value.substring(3, 6);
+                }
+                if (value.length >= 6) {
+                    formatted += '-' + value.substring(6, 8);
+                }
+                if (value.length >= 8) {
+                    formatted += '-' + value.substring(8, 10);
+                }
+                e.target.value = formatted;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Инфраструктура и технологии SkyWings">
+    <title>Инфраструктура - SkyWings</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .infrastructure-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .tech-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .tech-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 5px;
+                background: linear-gradient(90deg, #667eea, #764ba2);
+                transform: scaleX(0);
+                transition: transform 0.3s ease;
+            }
+
+            .tech-card:hover::before {
+                transform: scaleX(1);
+            }
+
+            .tech-card:hover {
+                transform: translateY(-10px) scale(1.02);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            }
+
+        .tech-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            transition: transform 0.5s ease;
+        }
+
+        .tech-card:hover .tech-icon {
+            transform: rotateY(360deg);
+        }
+
+        .tech-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .security-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .security-item {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+            .security-item:hover {
+                background: rgba(255,255,255,0.2);
+                transform: translateY(-5px);
+            }
+
+        .security-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .servers-section {
+            margin: 4rem 0;
+        }
+
+        .servers-map {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .map-illustration {
+            font-size: 10rem;
+            margin: 2rem 0;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .server-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .server-item {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+            .server-item:hover {
+                transform: translateX(10px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+        .server-location {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .server-status {
+            color: #28a745;
+            font-size: 0.9rem;
+        }
+
+        .performance-metrics {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 3rem 0;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+            .metric-card:hover {
+                transform: scale(1.05) rotate(2deg);
+            }
+
+        .metric-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin: 3rem 0;
+        }
+
+            .timeline::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: 0;
+                bottom: 0;
+                width: 2px;
+                background: #667eea;
+                transform: translateX(-50%);
+            }
+
+        .timeline-item {
+            position: relative;
+            margin: 2rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            grid-column: 2;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            grid-column: 1;
+            text-align: right;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .timeline-year {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                padding-left: 60px;
+            }
+
+                .timeline-item:nth-child(even) .timeline-content,
+                .timeline-item:nth-child(odd) .timeline-content {
+                    grid-column: 1;
+                    text-align: left;
+                }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">✈️ SkyWings</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О компании</a></li>
+                <li><a href="history.html">История заказов</a></li>
+                <li><a href="infrastructure.html">Инфраструктура</a></li>
+                <li><a href="culture.html">Культура полетов</a></li>
+                <li><a href="contact.html">Контакты</a></li>
+            </ul>
+            <div class="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1>Наша инфраструктура</h1>
+            <p>Передовые технологии для вашего комфорта</p>
+        </div>
+    </section>
+
+    <div class="infrastructure-content">
+        <section>
+            <h2 style="text-align: center; margin-bottom: 2rem;">Технологический стек</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">☁️</div>
+                    <h3>Облачная инфраструктура</h3>
+                    <p>Размещение на надежных облачных платформах AWS и Google Cloud обеспечивает 99.99% времени безотказной работы и масштабируемость системы.</p>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-icon">🔐</div>
+                    <h3>Защита данных</h3>
+                    <p>Шифрование данных по стандарту AES-256, двухфакторная аутентификация и соответствие требованиям GDPR и PCI DSS.</p>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-icon">⚡</div>
+                    <h3>Высокая производительность</h3>
+                    <p>Использование CDN и кэширование обеспечивают молниеносную загрузку страниц в любой точке мира.</p>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-icon">🤖</div>
+                    <h3>Искусственный интеллект</h3>
+                    <p>AI-алгоритмы для персонализации предложений и прогнозирования цен на авиабилеты.</p>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-icon">📱</div>
+                    <h3>Мобильные приложения</h3>
+                    <p>Нативные приложения для iOS и Android с поддержкой офлайн-режима и push-уведомлений.</p>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-icon">🔄</div>
+                    <h3>Интеграции</h3>
+                    <p>Прямая интеграция с более чем 500 авиакомпаниями и системами бронирования.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="security-section">
+            <h2>Безопасность превыше всего</h2>
+            <p>Мы используем передовые технологии для защиты ваших данных</p>
+            <div class="security-grid">
+                <div class="security-item">
+                    <div class="security-icon">🛡️</div>
+                    <h3>SSL/TLS шифрование</h3>
+                    <p>Все данные передаются по защищенному каналу</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">🔒</div>
+                    <h3>Многоуровневая защита</h3>
+                    <p>Firewall, DDoS-защита, мониторинг 24/7</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">✅</div>
+                    <h3>Сертификация</h3>
+                    <p>PCI DSS Level 1, ISO 27001</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">🔑</div>
+                    <h3>Безопасные платежи</h3>
+                    <p>Tokenизация данных банковских карт</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="servers-section">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Глобальная сеть серверов</h2>
+            <div class="servers-map">
+                <div class="map-illustration">🌍</div>
+                <p style="font-size: 1.2rem; color: #666;">Наши серверы расположены в ключевых точках мира для обеспечения минимальной задержки</p>
+
+                <div class="server-list">
+                    <div class="server-item">
+                        <div class="server-location">🇷🇺 Москва</div>
+                        <div class="server-status">● Работает</div>
+                    </div>
+                    <div class="server-item">
+                        <div class="server-location">🇩🇪 Франкфурт</div>
+                        <div class="server-status">● Работает</div>
+                    </div>
+                    <div class="server-item">
+                        <div class="server-location">🇺🇸 Нью-Йорк</div>
+                        <div class="server-status">● Работает</div>
+                    </div>
+                    <div class="server-item">
+                        <div class="server-location">🇸🇬 Сингапур</div>
+                        <div class="server-status">● Работает</div>
+                    </div>
+                    <div class="server-item">
+                        <div class="server-location">🇯🇵 Токио</div>
+                        <div class="server-status">● Работает</div>
+                    </div>
+                    <div class="server-item">
+                        <div class="server-location">🇦🇺 Сидней</div>
+                        <div class="server-status">● Работает</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="performance-metrics">
+            <h2 style="text-align: center; margin-bottom: 1rem;">Показатели производительности</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem;">Реальные данные за последний месяц</p>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">99.99%</div>
+                    <div class="metric-label">Uptime</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">&lt;200ms</div>
+                    <div class="metric-label">Время ответа</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">50K+</div>
+                    <div class="metric-label">Запросов/сек</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">100+</div>
+                    <div class="metric-label">Стран покрытия</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 style="text-align: center; margin-bottom: 3rem;">История развития инфраструктуры</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2009</div>
+                        <h3>Запуск платформы</h3>
+                        <p>Первая версия сайта на собственных серверах</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2012</div>
+                        <h3>Переход в облако</h3>
+                        <p>Миграция на AWS для повышения надежности</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2016</div>
+                        <h3>Мобильные приложения</h3>
+                        <p>Запуск приложений для iOS и Android</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020</div>
+                        <h3>Внедрение AI</h3>
+                        <p>Интеграция машинного обучения для персонализации</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <h3>Глобальная экспансия</h3>
+                        <p>Развертывание серверов в 20+ странах мира</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>О компании</h3>
+                <ul>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="#">Вакансии</a></li>
+                    <li><a href="#">Новости</a></li>
+                    <li><a href="#">Партнеры</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Помощь</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Правила</a></li>
+                    <li><a href="#">Возврат билетов</a></li>
+                    <li><a href="contact.html">Поддержка</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <ul>
+                    <li>📞 +7 (800) 555-35-35</li>
+                    <li>📧 info@skywings.ru</li>
+                    <li>📍 Москва, ул. Авиаторов, 1</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Социальные сети</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">VK</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SkyWings. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

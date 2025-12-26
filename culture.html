@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Культура полетов и правила авиаперевозок">
+    <title>Культура полетов - SkyWings</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .culture-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .intro-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .intro-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .tip-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid #667eea;
+        }
+
+            .tip-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            }
+
+        .tip-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .tip-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .accordion {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+            .accordion-header:hover {
+                background: #f9f9f9;
+            }
+
+            .accordion-header h3 {
+                margin: 0;
+                color: #333;
+            }
+
+        .accordion-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+        }
+
+        .accordion.active .accordion-content {
+            max-height: 1000px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .dos-donts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .dos, .donts {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .dos {
+            border-left: 5px solid #28a745;
+        }
+
+        .donts {
+            border-left: 5px solid #dc3545;
+        }
+
+            .dos h3, .donts h3 {
+                margin-bottom: 1.5rem;
+                font-size: 1.5rem;
+            }
+
+        .dos h3 {
+            color: #28a745;
+        }
+
+        .donts h3 {
+            color: #dc3545;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+            .list-item:hover {
+                transform: translateX(10px);
+            }
+
+        .list-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .baggage-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+
+        .baggage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .baggage-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+            .baggage-card:hover {
+                background: rgba(255,255,255,0.2);
+                transform: scale(1.05);
+            }
+
+        .baggage-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .security-tips {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 3rem 0;
+        }
+
+        .security-steps {
+            counter-reset: step;
+            margin-top: 2rem;
+        }
+
+        .security-step {
+            position: relative;
+            padding-left: 4rem;
+            margin-bottom: 2rem;
+        }
+
+            .security-step::before {
+                counter-increment: step;
+                content: counter(step);
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 50px;
+                height: 50px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+
+            .security-step h4 {
+                margin-bottom: 0.5rem;
+                color: #667eea;
+            }
+
+        @media (max-width: 768px) {
+            .dos-donts {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">✈️ SkyWings</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О компании</a></li>
+                <li><a href="history.html">История заказов</a></li>
+                <li><a href="infrastructure.html">Инфраструктура</a></li>
+                <li><a href="culture.html">Культура полетов</a></li>
+                <li><a href="contact.html">Контакты</a></li>
+            </ul>
+            <div class="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1>Культура полетов</h1>
+            <p>Все, что нужно знать для комфортного путешествия</p>
+        </div>
+    </section>
+
+    <div class="culture-content">
+        <div class="intro-section">
+            <div class="intro-icon">✈️</div>
+            <h2>Летайте с комфортом и уверенностью</h2>
+            <p style="max-width: 800px; margin: 1rem auto; color: #666; font-size: 1.1rem;">
+                Мы подготовили полное руководство для пассажиров, которое поможет вам чувствовать себя уверенно на всех этапах путешествия - от бронирования билета до прибытия в пункт назначения.
+            </p>
+        </div>
+
+        <section>
+            <h2 style="text-align: center; margin-bottom: 2rem;">Полезные советы для путешественников</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-number">1</div>
+                    <h3>Бронируйте заранее</h3>
+                    <p>Лучшие цены доступны за 2-3 месяца до вылета. Используйте наш календарь цен для поиска оптимальных дат.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-number">2</div>
+                    <h3>Онлайн регистрация</h3>
+                    <p>Зарегистрируйтесь онлайн за 24-48 часов до вылета, чтобы сэкономить время в аэропорту.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-number">3</div>
+                    <h3>Прибытие в аэропорт</h3>
+                    <p>Для международных рейсов приезжайте за 3 часа, для внутренних - за 2 часа до вылета.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-number">4</div>
+                    <h3>Документы</h3>
+                    <p>Проверьте срок действия паспорта - он должен быть действителен минимум 6 месяцев после возвращения.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-number">5</div>
+                    <h3>Багаж</h3>
+                    <p>Изучите правила авиакомпании по багажу. Взвесьте чемодан дома, чтобы избежать доплат.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-number">6</div>
+                    <h3>Страховка</h3>
+                    <p>Оформите туристическую страховку - это защитит вас от непредвиденных расходов в поездке.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="dos-donts">
+            <div class="dos">
+                <h3>✅ Что нужно делать</h3>
+                <div class="list-item">
+                    <span class="list-icon">📱</span>
+                    <p>Сохраните электронный билет в телефоне и распечатайте копию</p>
+                </div>
+                <div class="list-item">
+                    <span class="list-icon">💊</span>
+                    <p>Возьмите необходимые лекарства в ручную кладь</p>
+                </div>
+                <div class="list-item">
+                    <span class="list-icon">🔋</span>
+                    <p>Зарядите все устройства перед полетом</p>
+                </div>
+                <div class="list-item">
+                    <span class="list-icon">📋</span>
+                    <p>Сделайте копии документов и храните отдельно</p>
+                </div>
+                <div class="list-item">
+                    <span class="list-icon">💳</span>
+                    <p>Уведомите банк о поездке за границу</p>
+                </div>
+            </div>
+
+            <div class="donts">
+                <h3>❌ Чего не стоит делать</h3>
+                <div class="list-item">
+                    <span class="list-icon">🔪</span>
+                    <p>Не берите острые предметы в ручную кладь</p>
+                </div>
+                <div class="list-item">
+                    <span class="list-icon">💧</span>
+                    <p>Не берите жидкости объемом более 100 мл</p>
+                </div>
+                <div class="list-item">
+                    <span class="list-icon">⏰</span>
+                    <p>Не опаздывайте - регистрация закрывается за 40 минут</p>
+                </div>
+                <div class="list-item">
+                    <span class="list-icon">📦</span>
+                    <p>Не упаковывайте ценные вещи в багаж</p>
+                </div>
+                <div class="list-item">
+                    <span class="list-icon">🔐</span>
+                    <p>Не оставляйте багаж без присмотра</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="baggage-section">
+            <h2 style="text-align: center; margin-bottom: 1rem;">Правила провоза багажа</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Стандартные нормы для большинства авиакомпаний</p>
+            <div class="baggage-grid">
+                <div class="baggage-card">
+                    <div class="baggage-icon">🎒</div>
+                    <h3>Ручная кладь</h3>
+                    <p><strong>Размер:</strong> 55x40x20 см</p>
+                    <p><strong>Вес:</strong> до 10 кг</p>
+                </div>
+                <div class="baggage-card">
+                    <div class="baggage-icon">🧳</div>
+                    <h3>Эконом класс</h3>
+                    <p><strong>Количество:</strong> 1 место</p>
+                    <p><strong>Вес:</strong> до 23 кг</p>
+                </div>
+                <div class="baggage-card">
+                    <div class="baggage-icon">💼</div>
+                    <h3>Бизнес класс</h3>
+                    <p><strong>Количество:</strong> 2 места</p>
+                    <p><strong>Вес:</strong> до 32 кг каждое</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="security-tips">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Прохождение контроля безопасности</h2>
+            <div class="security-steps">
+                <div class="security-step">
+                    <h4>Подготовьте документы</h4>
+                    <p>Держите наготове посадочный талон и паспорт. Приготовьте их заранее, чтобы не задерживать очередь.</p>
+                </div>
+                <div class="security-step">
+                    <h4>Снимите металлические предметы</h4>
+                    <p>Положите ключи, монеты, телефон и пояс в контейнер перед прохождением рамки металлодетектора.</p>
+                </div>
+                <div class="security-step">
+                    <h4>Достаньте электронику</h4>
+                    <p>Ноутбуки, планшеты и другие крупные электронные устройства нужно достать из сумки и положить отдельно.</p>
+                </div>
+                <div class="security-step">
+                    <h4>Жидкости в прозрачном пакете</h4>
+                    <p>Все жидкости до 100 мл должны быть в одном прозрачном пакете размером 20x20 см.</p>
+                </div>
+                <div class="security-step">
+                    <h4>Снимите обувь</h4>
+                    <p>В некоторых аэропортах требуется снимать обувь. Носите удобную обувь, которую легко снять.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 style="text-align: center; margin-bottom: 2rem;">Часто задаваемые вопросы</h2>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Можно ли взять еду на борт?</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Да, вы можете взять твердую пищу в ручную кладь. Жидкости и гели (включая йогурты, джемы) ограничены 100 мл на емкость. Детское питание и лекарства в необходимом количестве разрешены.</p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Что делать, если опаздываю на рейс?</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Немедленно свяжитесь с авиакомпанией. Если опоздание незначительное, они могут подождать. В случае серьезной задержки вам помогут забронировать другой рейс. Сохраните документы, подтверждающие причину опоздания.</p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Как выбрать место в самолете?</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>При онлайн-регистрации вы можете выбрать место бесплатно или за доплату. Места у аварийного выхода имеют больше пространства, но там есть ограничения. Места у окна хороши для сна и фото, у прохода - для свободы передвижения.</p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Нужна ли виза для транзита?</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Зависит от страны транзита и вашего гражданства. Некоторые страны требуют транзитную визу даже если вы не покидаете аэропорт. Проверьте требования конкретной страны заранее на официальных сайтах посольств.</p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Что делать при потере багажа?</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Сразу обратитесь в офис розыска багажа в аэропорту до выхода из зоны получения багажа. Заполните заявление и сохраните номер. Авиакомпания обязана найти багаж или выплатить компенсацию согласно международным правилам.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>О компании</h3>
+                <ul>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="#">Вакансии</a></li>
+                    <li><a href="#">Новости</a></li>
+                    <li><a href="#">Партнеры</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Помощь</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Правила</a></li>
+                    <li><a href="#">Возврат билетов</a></li>
+                    <li><a href="contact.html">Поддержка</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <ul>
+                    <li>📞 +7 (800) 555-35-35</li>
+                    <li>📧 info@skywings.ru</li>
+                    <li>📍 Москва, ул. Авиаторов, 1</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Социальные сети</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">VK</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SkyWings. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Аккордеон
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const accordion = header.parentElement;
+                accordion.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
